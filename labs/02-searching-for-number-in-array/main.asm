@@ -1,54 +1,59 @@
 .include "m168Adef.inc"
 
 .org 0x0000
-    rjmp main
+    rjmp MAIN
 
-main:
+MAIN:
+    ldi r16, HIGH(RAMEND)
+    out SPH, r16
+    ldi r16, LOW(RAMEND)
+    out SPL, r16
+
     ldi r16, 10
 
-    ldi r26, low(0x0100)
-    ldi r27, high(0x0100)
+    ldi r26, LOW(0x0100)
+    ldi r27, HIGH(0x0100)
 
-init:
+INIT:
     ldi r17, 0
     ldi r18, 1
 
-    rjmp designate
+    rjmp DESIGNATE
 
-designate:
+DESIGNATE:
     cpi r17, 10
-    brge find
+    brge FIND
 
     st X+, r18
     lsl r18
 
     inc r17
-    rjmp designate
+    rjmp DESIGNATE
 
-find:
+FIND:
     ldi r17, 0
 
     ldi r19, 32 ; element for find is 32
 
-    ldi r26, low(0x0100)
-    ldi r27, high(0x0100)
+    ldi r26, LOW(0x0100)
+    ldi r27, HIGH(0x0100)
 
-    rjmp loop
+    rjmp LOOP
 
-loop:
+LOOP:
     cpi r17, 10
-    brge finish
+    brge FINISH
 
     ld r18, X+
     cp r18, r19
-    breq save
+    breq SAVE
 
     inc r17
-    rjmp loop
+    rjmp LOOP
 
-save:
+SAVE:
     mov r20, r17
-    rjmp finish
+    rjmp FINISH
   
-finish:
-    rjmp finish
+FINISH:
+    rjmp FINISH
