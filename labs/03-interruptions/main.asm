@@ -3,45 +3,44 @@
 .org 0x0000
     rjmp main
 
-.org 0x0020                      ; вектор прерывания Timer0 Overflow
+.org 0x0020
     rjmp TIMER0_OVF
 
 main:
-    cli                          ; выключаем прерывания, чтобы настраивать таймер
+    cli
 
     ldi r16, 0b00000000         
-    out TCCR0A, r16              ; включаем нормальный режим счета от 0 до 255
+    out TCCR0A, r16
 
     ldi r16, 0b00000001
-    out TCCR0B, r16              ; prescaler = 1 (то есть через каждый такт процессора вызывается прерывание)
+    out TCCR0B, r16
 
     ldi r16, 0
-    out OCR0A, r16               ; не нужно в данной задаче
-    out OCR0B, r16               ; не нужно в данной задаче
+    out OCR0A, r16
+    out OCR0B, r16
 
     ldi r16, 0b00000001
-    sts TIMSK0, r16              ; включить Timer0 Overflow Interrupt (то есть после переполнения счетчика таймера вызовется прерывание)
+    sts TIMSK0, r16
 
     ldi r16, 0
-    out TCNT0, r16               ; обнулить счетчик таймера
+    out TCNT0, r16
 
-    ldi r20, 0                   ; обнулить наш счётчик (сколько раз вызвалось прерывание)
+    ldi r20, 0
 
-    sei                          ; включить прерывания (настроили таймер, теперь можно включать прерывания)
+    sei
 
 loop:
-    rjmp loop                    ; крутимся в цикле и ждем переполнение TCNT0
+    rjmp loop
 
-; Обработчик прерывания переполнения таймера
 TIMER0_OVF:
     push r16
-    in r16, SREG                 ; прочитать статусный регистр (SREG)
-    push r16                     ; сохранить SREG
+    in r16, SREG
+    push r16
 
     inc r20
 
-    pop r16                      ; восстановить SREG
+    pop r16
     out SREG, r16
-    pop r16                      ; восстановить r16
+    pop r16
 
-    reti                         ; вернуться из прерывания
+    reti
