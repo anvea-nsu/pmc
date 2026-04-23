@@ -1,15 +1,4 @@
-;==============================================================
-; UART + EEPROM
-; МК: ATmega168A, F_CPU = 16 МГц, UART = 9600 бод
-;
-; Алгоритм:
-;   1. Принять байт по UART
-;   2. Записать в EEPROM по адресу 0x0000
-;   3. Прочитать обратно из EEPROM
-;   4. Прибавить 1
-;   5. Отправить результат по UART
-;   6. Повторить
-;==============================================================
+.include "m168Adef.inc"
 
 .equ UBRR_VAL  = 103
 .equ EEP_ADDR  = 0x0000
@@ -55,7 +44,6 @@ EEPROM_WRITE_WAIT:
 
     ret
 
-
 EEPROM_Read:
 EEPROM_READ_WAIT:
     sbic EECR, EEPE
@@ -72,21 +60,19 @@ EEPROM_READ_WAIT:
 
     ret
 
-
 UART_Init:
     ldi r16, HIGH(UBRR_VAL)
     sts UBRR0H, r16
     ldi r16, LOW(UBRR_VAL)
     sts UBRR0L, r16
 
-    ldi r16, (1<<RXEN0)|(1<<TXEN0)
+    ldi r16, (1 << RXEN0) | (1 << TXEN0)
     sts UCSR0B, r16
 
-    ldi r16, (1<<UCSZ01)|(1<<UCSZ00)
+    ldi r16, (1 << UCSZ01) | (1 << UCSZ00)
     sts UCSR0C, r16
 
     ret
-
 
 UART_SendByte:
 WAIT_TX:
@@ -96,7 +82,6 @@ WAIT_TX:
     sts UDR0, r16
     ret
 
-
 UART_ReceiveByte:
 WAIT_RX:
     lds r17, UCSR0A
@@ -104,4 +89,3 @@ WAIT_RX:
     rjmp WAIT_RX
     lds r16, UDR0
     ret
-

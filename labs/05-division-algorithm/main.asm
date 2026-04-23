@@ -1,128 +1,60 @@
-;==============================================================
-; Алгоритм деления двух беззнаковых 8-битных чисел
-; Платформа: ATmega168A (AVR)
-; Среда:     Microchip Studio
-;
-; Алгоритм: Деление со сдвигом (Shift-and-Subtract)
-;
-; Входные данные:
-;   r16 — делимое  (Dividend),  например 100
-;   r17 — делитель (Divisor),   например  7
-;
-; Выходные данные:
-;   r18 — частное  (Quotient)   = r16 / r17
-;   r19 — остаток  (Remainder)  = r16 mod r17
-;
-; Особые случаи:
-;   Если делитель = 0, программа уходит в бесконечный цикл
-;   (метка div_by_zero) — можно заменить на обработку ошибки.
-;==============================================================
+.include "m168Adef.inc"
 
-.include "m168Adef.inc"         ; Определения регистров ATmega168A
+.def dividend  = r16
+.def divisor   = r17
+.def quotient  = r18
+.def remainder = r19
+.def counter   = r20
+.def temp      = r21
 
-.def dividend  = r16            ; Делимое
-.def divisor   = r17            ; Делитель
-.def quotient  = r18            ; Частное (результат)
-.def remainder = r19            ; Остаток
-.def counter   = r20            ; Счётчик итераций (8 бит)
-.def temp      = r21            ; Вспомогательный регистр
-
-;==============================================================
-; Точка входа
-;==============================================================
 .org 0x0000
     rjmp    main
 
-.org 0x0040                     ; Начало кода после таблицы векторов
 main:
-    ; --- Инициализация стека ---
     ldi     temp, HIGH(RAMEND)
     out     SPH, temp
     ldi     temp, LOW(RAMEND)
     out     SPL, temp
 
-    ; --- Загрузка операндов ---
-    ldi     dividend,  100      ; Делимое  = 100
-    ldi     divisor,     7      ; Делитель =   7
-    ; Ожидаемый результат: частное = 14, остаток = 2
+    ldi     dividend, 100
+    ldi     divisor, 7
 
-    ; --- Вызов подпрограммы деления ---
     rcall   div8u
 
-    ; --- После вызова: r18 = частное, r19 = остаток ---
-    ; Здесь можно использовать результат (вывести, сохранить и т.д.)
-
 done:
-    rjmp    done                ; Бесконечный цикл (halt)
+    rjmp    done
 
-
-;==============================================================
-; Подпрограмма: div8u
-; Беззнаковое деление 8 бит / 8 бит
-;
-; Вход:  dividend (r16), divisor (r17)
-; Выход: quotient (r18), remainder (r19)
-; Портит: counter (r20), temp (r21)
-;
-; Принцип работы:
-;   На каждой из 8 итераций:
-;   1. Сдвигаем пару [remainder | dividend] влево на 1 бит
-;      (MSB делимого переходит в LSB остатка через перенос)
-;   2. Сравниваем остаток с делителем
-;   3. Если remainder >= divisor:
-;        remainder -= divisor
-;        устанавливаем LSB частного (через сдвиг с переносом)
-;   4. Иначе — бит частного = 0
-;==============================================================
 div8u:
-    ; --- Проверка деления на ноль ---
-    tst     divisor             ; Проверяем делитель на 0
-    breq    div_by_zero         ; Если 0 — переходим на обработку ошибки
+    tst     divisor
+    breq    div_by_zero
 
-    ; --- Инициализация ---
-    clr     remainder           ; Остаток = 0
-    clr     quotient            ; Частное = 0
-    ldi     counter, 8          ; Счётчик = 8 (количество бит)
+    clr     remainder
+    clr     quotient
+    ldi     counter, 8
 
 div_loop:
-    ; Шаг 1: Сдвиг [remainder:dividend] влево на 1 бит
-    ; LSL dividend: MSB(dividend) → флаг C, остальные биты сдвигаются влево
-    lsl     dividend            ; C = MSB(dividend); dividend <<= 1
-    ; ROL remainder: C → LSB(remainder); MSB(remainder) → C (теряется, т.к. мы работаем с 8 битами)
-    rol     remainder           ; remainder = (remainder << 1) | C
+    lsl     dividend
+    rol     remainder
 
-    ; Шаг 2: Сравниваем remainder с divisor
-    cp      remainder, divisor  ; remainder - divisor, флаги устанавливаются, но remainder не меняется
-    brlo    div_next            ; Если remainder < divisor — переходим, бит частного = 0
+    cp      remainder, divisor
+    brlo    div_next
 
-    ; Шаг 3: remainder >= divisor → вычитаем и фиксируем бит частного
-    sub     remainder, divisor  ; remainder -= divisor
-    sec                         ; C = 1 (бит частного = 1)
+    sub     remainder, divisor
+    sec
     rjmp    div_store_bit
 
 div_next:
-    clc                         ; C = 0 (бит частного = 0)
+    clc
 
 div_store_bit:
-    ; Шаг 4: Записываем бит частного (из флага C) в LSB quotient
-    ; quotient уже сдвинулся вместе с dividend через lsl/rol,
-    ; поэтому просто устанавливаем/очищаем LSB
-    rol     quotient            ; quotient = (quotient << 1) | C
+    rol     quotient
 
-
-    ; Декремент счётчика и повтор
     dec     counter
-    brne    div_loop            ; Если counter != 0 — повторяем
+    brne    div_loop
 
-    ret                         ; Возврат: r18 = частное, r19 = остаток
+    ret
 
-;==============================================================
-; Обработка деления на ноль
-; Здесь можно установить флаг ошибки или включить светодиод
-;==============================================================
 div_by_zero:
-    ; Устанавливаем результаты в 0xFF как признак ошибки
     ldi     quotient,  0xFF
     ldi     remainder, 0xFF
-    ret                         ; Возврат с признаком ошибки
-
+    ret

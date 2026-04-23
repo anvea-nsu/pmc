@@ -14,7 +14,7 @@ MAIN:
     ldi r16, (1 << COM0A1) | (1 << WGM01) | (1 << WGM00)
     out TCCR0A, r16
 
-    ldi r16, (1<<CS01)
+    ldi r16, (1<< CS01)
     out TCCR0B, r16
 
     ldi r16, 0x7F

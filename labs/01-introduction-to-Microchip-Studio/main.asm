@@ -3,7 +3,6 @@
 .org 0x0000
     rjmp MAIN
 
-
 MAIN:
     ldi r16, 5
     ldi r17, 3
@@ -17,7 +16,6 @@ MAIN:
 
     sts 0x0100, r16
     lds r18, 0x0100
-
 
 LOOP:
     rjmp LOOP
