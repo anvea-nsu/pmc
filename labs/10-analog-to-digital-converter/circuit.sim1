@@ -1,0 +1,31 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega168-1" mainComp="false" ShowProp="Frequency" Show_id="true" Show_Val="true" Pos="-40,20" rotation="0" hflip="1" vflip="1" label="mega168-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="lab10.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="LAnalizer" CircId="LAnalizer-2" mainComp="false" Show_id="false" Show_Val="false" Pos="112,212" rotation="0" hflip="1" vflip="1" label="LAnalizer-2" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="100000" connectGnd="true" InputImped="10 MΩ" TimDiv="817661597" TimPos="0" VolDiv="0.15" Tunnels=",,,,,,,," Trigger="9" TimeStep="1000 _ps" AutoExport="false" TresholdR="2.5 V" Bus="false,false,false,false,false,false,false,false," TresholdF="2.5 V" />
+
+<item itemtype="Voltage Source" CircId="Voltage Source-17" mainComp="false" ShowProp="Value_Volt" Show_id="false" Show_Val="true" Pos="260,-40" rotation="0" hflip="1" vflip="1" label="Voltage Source-17" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="0 V" MaxValue="5 V" MinValue="0 V" />
+
+<item itemtype="Voltage Source" CircId="Voltage Source-18" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="116,-40" rotation="0" hflip="1" vflip="1" label="Voltage Source-18" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="5 V" MaxValue="5 V" MinValue="0 V" />
+
+<item itemtype="Connector" uid="connector-20" startpinid="mega168-1-PORTD1" endpinid="LAnalizer-2-Pin1" pointList="-48,44,-124,44,-124,164,24,164" />
+
+<item itemtype="Connector" uid="connector-21" startpinid="mega168-1-PORTD2" endpinid="LAnalizer-2-Pin2" pointList="-48,52,-100,52,-100,180,24,180" />
+
+<item itemtype="Connector" uid="connector-22" startpinid="mega168-1-PORTD3" endpinid="LAnalizer-2-Pin3" pointList="-48,60,-80,60,-80,196,24,196" />
+
+<item itemtype="Connector" uid="connector-23" startpinid="mega168-1-PORTD4" endpinid="LAnalizer-2-Pin4" pointList="-48,68,-72,68,-72,212,24,212" />
+
+<item itemtype="Connector" uid="connector-24" startpinid="mega168-1-PORTD5" endpinid="LAnalizer-2-Pin5" pointList="-48,108,-64,108,-64,228,24,228" />
+
+<item itemtype="Connector" uid="connector-25" startpinid="mega168-1-PORTD6" endpinid="LAnalizer-2-Pin6" pointList="-48,116,-60,116,-60,244,24,244" />
+
+<item itemtype="Connector" uid="connector-26" startpinid="mega168-1-PORTD7" endpinid="LAnalizer-2-Pin7" pointList="-48,124,-56,124,-56,260,24,260" />
+
+<item itemtype="Connector" uid="Connector-40" startpinid="Voltage Source-18-outPin" endpinid="mega168-1-PORTV0" pointList="144,-24,144,92,0,92" />
+
+<item itemtype="Connector" uid="connector-28" startpinid="Voltage Source-17-outPin" endpinid="mega168-1-PORTC0" pointList="288,-24,288,68,0,68" />
+
+<item itemtype="Connector" uid="Connector-38" startpinid="mega168-1-PORTD0" endpinid="LAnalizer-2-Pin0" pointList="-48,36,-88,36,-88,148,24,148" />
+
+</circuit>
