@@ -1,0 +1,137 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega168-1" mainComp="false" ShowProp="Frequency" Show_id="true" Show_Val="true" Pos="568,584" rotation="0" hflip="1" vflip="1" label="mega168-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="lab12.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Seven Segment" CircId="Seven Segment-2" mainComp="false" Show_id="false" Show_Val="false" Pos="800,604" rotation="0" hflip="1" vflip="1" label="Seven Segment-2" idLabPos="20,-44" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" NumDisplays="1" Vertical_Pins="false" CommonCathode="true" Threshold="2.4 V" MaxCurrent="0.02 A" Resistance="1 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-6" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,604" rotation="0" hflip="1" vflip="1" label="Resistor-6" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-7" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,612" rotation="0" hflip="1" vflip="1" label="Resistor-7" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-8" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,620" rotation="0" hflip="1" vflip="1" label="Resistor-8" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-10" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,628" rotation="0" hflip="1" vflip="1" label="Resistor-10" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-11" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,580" rotation="0" hflip="1" vflip="1" label="Resistor-11" idLabPos="-16,-24" labelrot="0" valLabPos="-8.99067,4.47623" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-12" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,596" rotation="0" hflip="1" vflip="1" label="Resistor-12" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Resistor" CircId="Resistor-14" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="688,588" rotation="0" hflip="1" vflip="1" label="Resistor-14" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="100 Ω" />
+
+<item itemtype="Push" CircId="Push-17" mainComp="false" Show_id="false" Show_Val="false" Pos="1044,516" rotation="0" hflip="1" vflip="1" label="Push-17" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-18" mainComp="false" Show_id="false" Show_Val="false" Pos="960,572" rotation="0" hflip="1" vflip="1" label="Push-18" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-19" mainComp="false" Show_id="false" Show_Val="false" Pos="892,564" rotation="0" hflip="1" vflip="1" label="Push-19" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-20" mainComp="false" Show_id="false" Show_Val="false" Pos="888,500" rotation="0" hflip="1" vflip="1" label="Push-20" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-21" mainComp="false" Show_id="false" Show_Val="false" Pos="964,508" rotation="0" hflip="1" vflip="1" label="Push-21" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-22" mainComp="false" Show_id="false" Show_Val="false" Pos="1040,580" rotation="0" hflip="1" vflip="1" label="Push-22" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-23" mainComp="false" Show_id="false" Show_Val="false" Pos="892,624" rotation="0" hflip="1" vflip="1" label="Push-23" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-24" mainComp="false" Show_id="false" Show_Val="false" Pos="960,636" rotation="0" hflip="1" vflip="1" label="Push-24" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-25" mainComp="false" Show_id="false" Show_Val="false" Pos="1036,652" rotation="0" hflip="1" vflip="1" label="Push-25" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Push" CircId="Push-26" mainComp="false" Show_id="false" Show_Val="false" Pos="892,680" rotation="0" hflip="1" vflip="1" label="Push-26" idLabPos="-12,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Ground" CircId="Ground-45" mainComp="false" Show_id="false" Show_Val="false" Pos="792,684" rotation="0" hflip="1" vflip="1" label="Ground-45" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-46" mainComp="false" Show_id="false" Show_Val="false" Pos="808,684" rotation="0" hflip="1" vflip="1" label="Ground-46" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-59" mainComp="false" Show_id="false" Show_Val="false" Pos="924,472" rotation="0" hflip="1" vflip="1" label="Ground-59" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-60" mainComp="false" Show_id="false" Show_Val="false" Pos="1004,496" rotation="0" hflip="1" vflip="1" label="Ground-60" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-61" mainComp="false" Show_id="false" Show_Val="false" Pos="1084,520" rotation="0" hflip="1" vflip="1" label="Ground-61" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-66" mainComp="false" Show_id="false" Show_Val="false" Pos="1088,588" rotation="0" hflip="1" vflip="1" label="Ground-66" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-68" mainComp="false" Show_id="false" Show_Val="false" Pos="996,596" rotation="0" hflip="1" vflip="1" label="Ground-68" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-70" mainComp="false" Show_id="false" Show_Val="false" Pos="932,604" rotation="0" hflip="1" vflip="1" label="Ground-70" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-72" mainComp="false" Show_id="false" Show_Val="false" Pos="1092,700" rotation="0" hflip="1" vflip="1" label="Ground-72" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-74" mainComp="false" Show_id="false" Show_Val="false" Pos="996,640" rotation="0" hflip="1" vflip="1" label="Ground-74" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-76" mainComp="false" Show_id="false" Show_Val="false" Pos="920,656" rotation="0" hflip="1" vflip="1" label="Ground-76" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-78" mainComp="false" Show_id="false" Show_Val="false" Pos="920,708" rotation="0" hflip="1" vflip="1" label="Ground-78" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Connector" uid="Connector-27" startpinid="mega168-1-PORTD0" endpinid="Resistor-11-lPin" pointList="560,600,552,600,552,580,672,580" />
+
+<item itemtype="Connector" uid="Connector-28" startpinid="Resistor-11-rPin" endpinid="Seven Segment-2-pin_a" pointList="704,580,776,580" />
+
+<item itemtype="Connector" uid="Connector-29" startpinid="mega168-1-PORTD1" endpinid="Resistor-14-lPin" pointList="560,608,548,608,548,568,652,568,652,588,672,588" />
+
+<item itemtype="Connector" uid="Connector-30" startpinid="Resistor-14-rPin" endpinid="Seven Segment-2-pin_b" pointList="704,588,776,588" />
+
+<item itemtype="Connector" uid="Connector-31" startpinid="mega168-1-PORTD2" endpinid="Resistor-12-lPin" pointList="560,616,540,616,540,564,644,564,644,596,672,596" />
+
+<item itemtype="Connector" uid="Connector-32" startpinid="Resistor-12-rPin" endpinid="Seven Segment-2-pin_c" pointList="704,596,776,596" />
+
+<item itemtype="Connector" uid="Connector-33" startpinid="mega168-1-PORTD3" endpinid="Resistor-6-lPin" pointList="560,624,532,624,532,556,636,556,636,604,672,604" />
+
+<item itemtype="Connector" uid="Connector-34" startpinid="Resistor-6-rPin" endpinid="Seven Segment-2-pin_d" pointList="704,604,776,604" />
+
+<item itemtype="Connector" uid="Connector-35" startpinid="mega168-1-PORTD4" endpinid="Resistor-7-lPin" pointList="560,632,524,632,524,548,628,548,628,612,672,612" />
+
+<item itemtype="Connector" uid="Connector-36" startpinid="Resistor-7-rPin" endpinid="Seven Segment-2-pin_e" pointList="704,612,776,612" />
+
+<item itemtype="Connector" uid="Connector-37" startpinid="mega168-1-PORTD5" endpinid="Resistor-8-lPin" pointList="560,672,524,672,524,620,672,620" />
+
+<item itemtype="Connector" uid="Connector-38" startpinid="Resistor-8-rPin" endpinid="Seven Segment-2-pin_f" pointList="704,620,776,620" />
+
+<item itemtype="Connector" uid="Connector-39" startpinid="mega168-1-PORTD6" endpinid="Resistor-10-lPin" pointList="560,680,672,680,672,628" />
+
+<item itemtype="Connector" uid="Connector-40" startpinid="Resistor-10-rPin" endpinid="Seven Segment-2-pin_g" pointList="704,628,776,628" />
+
+<item itemtype="Connector" uid="Connector-47" startpinid="Seven Segment-2-pin_dot" endpinid="Ground-45-Gnd" pointList="792,636,792,668" />
+
+<item itemtype="Connector" uid="Connector-48" startpinid="Seven Segment-2-pin_commona" endpinid="Ground-46-Gnd" pointList="808,636,808,668" />
+
+<item itemtype="Connector" uid="Connector-49" startpinid="mega168-1-PORTB0" endpinid="Push-20-pinP0" pointList="560,696,468,696,468,500,872,500" />
+
+<item itemtype="Connector" uid="Connector-51" startpinid="Push-17-pinP0" endpinid="mega168-1-PORTB2" pointList="1028,516,632,516,632,688,608,688" />
+
+<item itemtype="Connector" uid="Connector-53" startpinid="Push-18-pinP0" endpinid="mega168-1-PORTB4" pointList="944,572,944,552,660,552,660,672,608,672" />
+
+<item itemtype="Connector" uid="Connector-54" startpinid="Push-22-pinP0" endpinid="mega168-1-PORTB5" pointList="1024,580,1024,544,652,544,652,664,608,664" />
+
+<item itemtype="Connector" uid="Connector-56" startpinid="Push-24-pinP0" endpinid="mega168-1-PORTB7" pointList="944,636,944,764,428,764,428,664,560,664" />
+
+<item itemtype="Connector" uid="Connector-57" startpinid="Push-25-pinP0" endpinid="mega168-1-PORTC0" pointList="1020,652,996,652,996,720,616,720,616,632,608,632" />
+
+<item itemtype="Connector" uid="Connector-58" startpinid="Push-26-pinP0" endpinid="mega168-1-PORTC1" pointList="876,680,848,680,848,744,612,744,612,624,608,624" />
+
+<item itemtype="Connector" uid="Connector-63" startpinid="Push-20-switch0pinN" endpinid="Ground-59-Gnd" pointList="904,500,904,444,924,444,924,456" />
+
+<item itemtype="Connector" uid="Connector-64" startpinid="Push-21-switch0pinN" endpinid="Ground-60-Gnd" pointList="980,508,980,452,1004,452,1004,480" />
+
+<item itemtype="Connector" uid="Connector-65" startpinid="Push-17-switch0pinN" endpinid="Ground-61-Gnd" pointList="1060,516,1060,472,1084,472,1084,504" />
+
+<item itemtype="Connector" uid="Connector-67" startpinid="Push-22-switch0pinN" endpinid="Ground-66-Gnd" pointList="1056,580,1064,580,1064,548,1088,548,1088,572" />
+
+<item itemtype="Connector" uid="Connector-69" startpinid="Push-18-switch0pinN" endpinid="Ground-68-Gnd" pointList="976,572,976,556,996,556,996,580" />
+
+<item itemtype="Connector" uid="Connector-71" startpinid="Push-19-switch0pinN" endpinid="Ground-70-Gnd" pointList="908,564,932,564,932,588" />
+
+<item itemtype="Connector" uid="Connector-73" startpinid="Push-25-switch0pinN" endpinid="Ground-72-Gnd" pointList="1052,652,1092,652,1092,684" />
+
+<item itemtype="Connector" uid="Connector-75" startpinid="Push-24-switch0pinN" endpinid="Ground-74-Gnd" pointList="976,636,976,612,996,612,996,624" />
+
+<item itemtype="Connector" uid="Connector-77" startpinid="Push-23-switch0pinN" endpinid="Ground-76-Gnd" pointList="908,624,908,608,920,608,920,640" />
+
+<item itemtype="Connector" uid="Connector-79" startpinid="Push-26-switch0pinN" endpinid="Ground-78-Gnd" pointList="908,680,920,680,920,692" />
+
+<item itemtype="Connector" uid="Connector-50" startpinid="Push-21-pinP0" endpinid="mega168-1-PORTB1" pointList="948,508,620,508,620,696,608,696" />
+
+<item itemtype="Connector" uid="Connector-55" startpinid="Push-23-pinP0" endpinid="mega168-1-PORTB6" pointList="876,624,836,624,836,756,440,756,440,656,560,656" />
+
+<item itemtype="Connector" uid="Connector-52" startpinid="Push-19-pinP0" endpinid="mega168-1-PORTB3" pointList="876,564,644,564,644,680,608,680" />
+
+</circuit>
