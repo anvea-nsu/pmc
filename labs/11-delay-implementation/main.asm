@@ -2,16 +2,15 @@
 
 .equ F_CPU     = 16000000
 .equ PRESCALER = 256
-.equ TIMER_TOP = (F_CPU / PRESCALER) - 1 ; = 62499
+.equ TIMER_TOP = (F_CPU / PRESCALER) - 1
 
 .equ TIME_ON  = 1
 .equ TIME_OFF = 2
 
-; ========================= FLASH =========================
 .CSEG
 .ORG 0x0000
     rjmp RESET
-.ORG OC1Aaddr ; Timer1 Compare Match A (0x0016)
+.ORG OC1Aaddr
     rjmp TIMER1_COMPA_ISR
 
 .ORG INT_VECTORS_SIZE
@@ -25,29 +24,28 @@ RESET:
     sbi  PORTB, PB5
 
     clr  r16
-    sts  seconds, r16 ; seconds = 0
+    sts  seconds, r16
     ldi  r16, 1
-    sts  led_state, r16 ; led_state = 1
+    sts  led_state, r16
 
-    ; Timer1: режим CTC, предделитель /256
     clr  r16
-    sts  TCCR1A, r16 ; WGM11:10 = 00
+    sts  TCCR1A, r16
 
-    ldi  r16, (1<<WGM12)|(1<<CS12)
-    sts  TCCR1B, r16 ; CTC, предделитель /256
+    ldi  r16, (1 << WGM12) | (1 << CS12)
+    sts  TCCR1B, r16
 
     ldi  r16, HIGH(TIMER_TOP)
     sts  OCR1AH, r16
     ldi  r16, LOW(TIMER_TOP)
     sts  OCR1AL, r16
 
-    ldi  r16, (1<<OCIE1A)
+    ldi  r16, (1 << OCIE1A)
     sts  TIMSK1, r16
 
     sei
+
 MAIN_LOOP:
     rjmp MAIN_LOOP
-
 
 TIMER1_COMPA_ISR:
     push r16
@@ -86,8 +84,6 @@ ISR_EXIT:
     pop  r16
     reti
 
-
-; ========================= SRAM =========================
 .DSEG
 .ORG SRAM_START
 seconds: .db 1

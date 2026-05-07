@@ -2,16 +2,15 @@
 
 .equ LO          = 0b00000000
 .equ HI          = 0b11111111
-.equ SEG_MASK    = 0b01111111  ; PD0-PD6
-.equ ROW_MASK    = 0b00001111  ; PB0-PB3
-.equ COL_MASK    = 0b00000111  ; PC0-PC2
-.equ SCAN_ROW1   = 0b00001110  ; PB0=0
-.equ SCAN_ROW2   = 0b00001101  ; PB1=0
-.equ SCAN_ROW3   = 0b00001011  ; PB2=0
-.equ SCAN_ROW4   = 0b00000111  ; PB3=0
+.equ SEG_MASK    = 0b01111111
+.equ ROW_MASK    = 0b00001111
+.equ COL_MASK    = 0b00000111
+.equ SCAN_ROW1   = 0b00001110
+.equ SCAN_ROW2   = 0b00001101
+.equ SCAN_ROW3   = 0b00001011
+.equ SCAN_ROW4   = 0b00000111
 .equ NO_KEY      = 0xFF
 
-; ========================= FLASH =========================
 .CSEG
 .ORG 0x0000
     rjmp RESET
@@ -25,32 +24,29 @@ RESET:
     ldi  r16, LOW(RAMEND)
     out  SPL, r16
 
-  ; D0-D6 a-g
     ldi  r16, SEG_MASK
     out  DDRD, r16
     ldi  r16, LO
     out  PORTD, r16
 
-    ; B0-B3 rows
     ldi  r16, ROW_MASK
     out  DDRB, r16
     ldi  r16, LO
     out  PORTB, r16
 
-    ; C0-C2 cols
     ldi  r16, LO
     out  DDRC, r16
     ldi  r16, COL_MASK
     out  PORTC, r16
 
-    ; --- Настройка PCINT1 (PC0=PCINT8, PC1=PCINT9, PC2=PCINT10) ---
-    ldi  r16, (1<<PCINT8)|(1<<PCINT9)|(1<<PCINT10)
-    sts  PCMSK1, r16 ; прерывания на C0-C2
+    ldi  r16, (1 << PCINT8) | (1 << PCINT9) | (1 << PCINT10)
+    sts  PCMSK1, r16
  
-    ldi  r16, (1<<PCIE1)
-    sts  PCICR, r16 ; группа PCINT1
+    ldi  r16, (1 << PCIE1)
+    sts  PCICR, r16
  
     sei
+
 MAIN_LOOP:
     rjmp MAIN_LOOP
 
@@ -64,13 +60,11 @@ PCINT1_ISR:
     push ZL
     push ZH
  
-    ; --- проверка на нажатие ---
     in   r17, PINC
     andi r17, COL_MASK
     cpi  r17, COL_MASK
-    breq ISR_RESTORE ; отпускание
+    breq ISR_RESTORE
  
-    ; строка 1: кнопки 1, 2, 3
     ldi  r16, SCAN_ROW1
     out  PORTB, r16
 
@@ -83,7 +77,6 @@ PCINT1_ISR:
     sbrs r17, 2
     ldi  r20, 3
  
-    ; строка 2: кнопки 4, 5, 6
     ldi  r16, SCAN_ROW2
     out  PORTB, r16
 
@@ -95,7 +88,6 @@ PCINT1_ISR:
     sbrs r17, 2
     ldi  r20, 6
 
-    ; строка 3: кнопки 7, 8, 9
     ldi  r16, SCAN_ROW3
     out  PORTB, r16
 
@@ -107,21 +99,19 @@ PCINT1_ISR:
     sbrs r17, 2
     ldi  r20, 9
 
-    ; строка 4: кнопки *, 0, #
     ldi  r16, SCAN_ROW4
     out  PORTB, r16
 
     in   r17, PINC
     sbrs r17, 0
-    ldi  r20, 10              ; * - пусто
+    ldi  r20, 10
     sbrs r17, 1
-    ldi  r20, 0               ; 0
+    ldi  r20, 0
     sbrs r17, 2
-    ldi  r20, 11              ; # - пусто
+    ldi  r20, 11
 
-    ; === Вывод на индикатор ===
     cpi  r20, NO_KEY
-    breq ISR_RESTORE ; ничего не нашли
+    breq ISR_RESTORE
 
     ldi  ZH, HIGH(SEG_TABLE * 2)
     ldi  ZL, LOW(SEG_TABLE * 2)
@@ -135,7 +125,7 @@ ISR_RESTORE:
     ldi  r16, LO
     out  PORTB, r16
 
-    ldi  r16, (1<<PCIF1)
+    ldi  r16, (1 << PCIF1)
     out  PCIFR, r16
 
     pop  ZH
@@ -151,8 +141,6 @@ SEG_TABLE:
     ;    0     1     2     3     4     5     6     7     8     9     *     #
     .db  0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x00, 0x00
 
-
-; ========================= SRAM =========================
 .DSEG
 .ORG SRAM_START
 

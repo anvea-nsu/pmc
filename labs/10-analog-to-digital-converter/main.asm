@@ -21,11 +21,8 @@ RESET:
     ldi  r16, 0x00
     out  PORTB, r16
 
-    ; --- Инициализация АЦП ---
-    ; ADMUX: REFS0=1 (опорное = AVCC), ADLAR=0 (правое выравнивание), MUX=0000 (канал ADC0)
     ldi  r16, (1 << REFS0)
     sts  ADMUX, r16
-    ; ADCSRA: ADEN=1 (включить АЦП), ADPS2:0=111 (делитель 128)
     ldi  r16, (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0)
     sts  ADCSRA, r16
 MAIN_LOOP:
@@ -34,14 +31,14 @@ MAIN_LOOP:
     sts  ADCSRA, r16
 ADC_WAIT:
     lds  r16, ADCSRA
-    sbrc r16, ADSC              ; Пропустить следующую команду если ADSC = 0
+    sbrc r16, ADSC
     rjmp ADC_WAIT
 
-    lds  r17, ADCL              ; Биты 7-0
-    lds  r18, ADCH              ; Биты 9-8 (в битах 1-0)
+    lds  r17, ADCL
+    lds  r18, ADCH
 
-    out  PORTD, r17             ; PORTD
-    out  PORTB, r18             ; PORTB (PB1:PB0)
+    out  PORTD, r17
+    out  PORTB, r18
 
     rjmp MAIN_LOOP
 

@@ -3,13 +3,11 @@
 .equ LO            = 0b00000000
 .equ HI            = 0b11111111
 
-; --- SPI pins on ATmega168A ---
 .equ SS_BIT        = PB2
 .equ MOSI_BIT      = PB3
 .equ MISO_BIT      = PB4
 .equ SCK_BIT       = PB5
 
-; ========================= FLASH =========================
 .CSEG
 .ORG 0x0000
     rjmp RESET
@@ -23,25 +21,18 @@ RESET:
     ldi  r16, LOW(RAMEND)
     out  SPL, r16
 
-    ; --- SPI Master ---
-    ; PB2(SS), PB3(MOSI), PB5(SCK) = outputs
-    ; PB4(MISO) = input
-    ldi  r16, (1<<SS_BIT)|(1<<MOSI_BIT)|(1<<SCK_BIT)
+    ldi  r16, (1 << SS_BIT) | (1 << MOSI_BIT) | (1 << SCK_BIT)
     out  DDRB, r16
 
-    ; idle: SS=1, MOSI=0, SCK=0
-    ldi  r16, (1<<SS_BIT)
+    ldi  r16, (1 << SS_BIT)
     out  PORTB, r16
 
-    ; SPCR = SPI enable + Master + fosc/16
-    ; SPI mode 0, MSB first
-    ldi  r16, (1<<SPE)|(1<<MSTR)|(1<<SPR0)
+    ldi  r16, (1 << SPE) | (1 << MSTR) | (1 << SPR0)
     out  SPCR, r16
 
     sei
 
 MAIN_LOOP:
-    ; --- выбрать Slave ---
     cbi  PORTB, SS_BIT
 
     ldi  ZH, HIGH(MSG * 2)
@@ -54,20 +45,18 @@ SEND_NEXT:
     rjmp SEND_NEXT
 
 SEND_DONE:
-    ; --- отпустить Slave ---
     sbi  PORTB, SS_BIT
 
     rcall DELAY_BIG
     rjmp MAIN_LOOP
 
-; r16 = byte to send
 SPI_SEND_BYTE:
     out  SPDR, r16
 WAIT_SPIF:
     in   r17, SPSR
     sbrs r17, SPIF
     rjmp WAIT_SPIF
-    in   r17, SPDR        ; принятый байт игнорируем
+    in   r17, SPDR
     ret
 
 DELAY_BIG:
@@ -86,5 +75,5 @@ D3:
     ret
 
 MSG:
-    .db "Hello World", 13, 10, 0
+    .db "Hello, World!", 13, 10, 0
 
